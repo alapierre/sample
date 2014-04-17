@@ -26,6 +26,7 @@ public class ReadLineSample {
             while (it.hasNext()) {
                 String line = it.nextLine();
                 System.out.println(line);
+                String[] split = line.split("\t");
                 /// do something with line
             }
         } catch (IOException ex) {
