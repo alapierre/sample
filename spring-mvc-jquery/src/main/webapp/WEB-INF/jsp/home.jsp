@@ -56,11 +56,34 @@
 
         </script>
 
+        <script>
+
+            $(function() {
+                
+                $("#country-name").autocomplete({
+                    minLength: 0,
+                    source: 'http://localhost:8084/spring-mvc-jquery/keyValue',
+                    focus: function(event, ui) {
+                        $("#country-name").val(ui.item.value);
+                        return false;
+                    },
+                    select: function(event, ui) {
+                        $("#country-name").val(ui.item.value);
+                        $("#country-id").val(ui.item.key);
+
+                        return false;
+                    }
+                });
+
+            });
+
+        </script>
+
     </head>
     <body>
         <h1>Hello World!</h1>
 
-        ala ma kota a kot ma ale
+        Sample pokazujacy działnie jQuery autocomplete
 
         <div class="ui-widget">
             <label for="tags">Tags: </label>
@@ -72,5 +95,11 @@
             <input id="country">
         </div>
 
+        <div class="ui-widget">
+            <label for="country">Country2: </label>
+            <input id="country-name" name="country-name">
+            <input  type="text" id="country-id" />
+        </div>
+        
     </body>
 </html>
