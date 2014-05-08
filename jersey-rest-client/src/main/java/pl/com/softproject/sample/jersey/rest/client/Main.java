@@ -7,6 +7,10 @@ import com.sun.jersey.api.client.Client;
 import com.sun.jersey.api.client.ClientResponse;
 import com.sun.jersey.api.client.WebResource;
 import com.sun.jersey.api.client.filter.HTTPBasicAuthFilter;
+import java.io.IOException;
+import java.util.HashMap;
+import java.util.Map;
+import org.codehaus.jackson.map.ObjectMapper;
 
 /**
  *
@@ -14,12 +18,11 @@ import com.sun.jersey.api.client.filter.HTTPBasicAuthFilter;
  */
 public class Main {
 
-    public static void main(String[] args) {
+    public static void main(String[] args) throws IOException {
 
-        String url = "https://dms.softproject.com.pl/alfresco/service/api/people";
+        String url = "https://................../alfresco/service/api/people";
         String user = "", pass = "";
-        
-        
+
         Client client = Client.create();
         client.addFilter(new HTTPBasicAuthFilter(user, pass));
 
@@ -33,10 +36,13 @@ public class Main {
                     + response.getStatus());
         }
 
-        String output = response.getEntity(String.class);
+        String outputFromServer = response.getEntity(String.class);
+        
+        Map<String, String> map;
+        ObjectMapper mapper = new ObjectMapper();
+        map = mapper.readValue(outputFromServer, HashMap.class);
 
-        System.out.println("Output from Server .... \n");
-        System.out.println(output);
+        System.out.println(map);
 
     }
 
