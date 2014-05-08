@@ -5,21 +5,12 @@ package pl.com.softproject.sample.spring.template;
 
 import java.nio.charset.Charset;
 import org.apache.commons.codec.binary.Base64;
-import org.apache.http.HttpHost;
-import org.apache.http.client.AuthCache;
-import org.apache.http.client.protocol.ClientContext;
-import org.apache.http.impl.auth.BasicScheme;
-import org.apache.http.impl.client.BasicAuthCache;
-import org.apache.http.protocol.BasicHttpContext;
-import org.apache.http.protocol.HttpContext;
 import org.springframework.context.ApplicationContext;
 import org.springframework.context.support.ClassPathXmlApplicationContext;
 import org.springframework.http.HttpEntity;
 import org.springframework.http.HttpHeaders;
 import org.springframework.http.HttpMethod;
 import org.springframework.http.ResponseEntity;
-import org.springframework.http.client.ClientHttpRequestFactory;
-import org.springframework.http.client.HttpComponentsClientHttpRequestFactory;
 import org.springframework.web.client.RestTemplate;
 
 /**
@@ -38,7 +29,7 @@ public class ManualAuth {
         HttpEntity httpEntity = new HttpEntity(createHeaders("", ""));
         
         ResponseEntity<String> resp = restTemplate.exchange(".........../alfresco/service/api/people", 
-                HttpMethod.POST,httpEntity, String.class);
+                HttpMethod.POST, httpEntity, String.class);
         
         System.out.println(resp);
 
