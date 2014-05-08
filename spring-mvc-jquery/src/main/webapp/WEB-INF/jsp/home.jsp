@@ -4,6 +4,7 @@
     Author     : Adrian Lapierre <alapierre@softproject.com.pl>
 --%>
 
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
 <!DOCTYPE html>
 <html>
@@ -47,7 +48,7 @@
                 });
 
                 $("#country").autocomplete({
-                    source: 'http://localhost:8084/spring-mvc-jquery/test'
+                    source: '<c:url value="/test"/>'
                 });
 
             });
@@ -62,7 +63,7 @@
                 
                 $("#country-name").autocomplete({
                     minLength: 0,
-                    source: 'http://localhost:8084/spring-mvc-jquery/keyValue',
+                    source: '<c:url value="/keyValue"/>',
                     focus: function(event, ui) {
                         $("#country-name").val(ui.item.value);
                         return false;

@@ -18,6 +18,11 @@
     <mvc:view-controller path="/" view-name="home"/>
     <mvc:resources mapping="/resources/**" location="/resources/" />
     
+    <mvc:view-controller path="/table" view-name="table"/>
+    <mvc:view-controller path="/table_serverside" view-name="table_serverside"/>
+    
+    
+    
     <context:property-placeholder location="classpath:system.properties"/>
     
     <context:component-scan base-package="pl.com.softproject.sample.spring.mvc.jquery.controller"/>
