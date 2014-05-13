@@ -11,6 +11,7 @@
         <module>spring-mvc-jquery</module>
         <module>spring-rest-template</module>
         <module>jersey-rest-client</module>
+        <module>spring-mvc-jasypt</module>
     </modules>
     <dependencies>
         <dependency>

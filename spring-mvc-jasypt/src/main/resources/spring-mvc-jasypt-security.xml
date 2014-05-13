@@ -1,0 +1,51 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans:beans xmlns="http://www.springframework.org/schema/security"
+             xmlns:context="http://www.springframework.org/schema/context"
+             xmlns:beans="http://www.springframework.org/schema/beans" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+             xsi:schemaLocation="http://www.springframework.org/schema/beans
+                                http://www.springframework.org/schema/beans/spring-beans-3.0.xsd
+                                http://www.springframework.org/schema/context
+                                http://www.springframework.org/schema/context/spring-context-3.2.xsd
+                                http://www.springframework.org/schema/security
+                                http://www.springframework.org/schema/security/spring-security-3.2.xsd">
+
+	<context:property-placeholder location="classpath:system.properties" />
+
+    <http auto-config='true'>
+        <intercept-url pattern="/login" access="IS_AUTHENTICATED_ANONYMOUSLY"/>
+        <intercept-url pattern="/**" access="ROLE_USER, ROLE_ADMIN, ROLE_SUPPLY, ROLE_MANAGER" />
+        <form-login
+                login-page="/login"
+                authentication-failure-url="/login?error=true"
+                authentication-success-handler-ref="authenticationSuccessHandler"
+         />
+        <logout invalidate-session="true"/>
+    </http>
+
+    <authentication-manager>
+        <authentication-provider>
+            <password-encoder ref="passwordEncoder"/>
+            <user-service>
+
+                <!--<user name="user" password="user" authorities="ROLE_USER" />-->
+                <user name="user" password="CER/7WEG+OIE9zsaKpRHVA==" authorities="ROLE_USER" />
+                <!--<user name="admin" password="admin" authorities="ROLE_USER, ROLE_ADMIN, ROLE_SUPPLY, ROLE_MANAGER" />-->
+                <user name="admin" password="isCj1nETCT8apNQdlLOnnA==" authorities="ROLE_USER, ROLE_ADMIN, ROLE_SUPPLY, ROLE_MANAGER" />
+
+            </user-service>
+        </authentication-provider>
+    </authentication-manager>
+
+    <beans:bean id="authenticationSuccessHandler" class="org.springframework.security.web.authentication.SavedRequestAwareAuthenticationSuccessHandler">
+        <beans:property name="redirectStrategy">
+            <beans:bean class="pl.com.softproject.sample.security.RedirectStrategyImpl">
+                <beans:property name="defaultTargetUrl" value="defaultTarget"/>
+            </beans:bean>
+        </beans:property>
+    </beans:bean>
+
+    <beans:bean id="passwordEncoder" class="pl.com.softproject.security.PasswordEncoderImpl">
+        <beans:property name="passwordForEncryptor" value="${jasypt.security.password}" />
+    </beans:bean>
+
+</beans:beans>
