@@ -26,7 +26,10 @@
 
     <security:authentication-manager alias="myAuthManager">
         <security:authentication-provider>
-            <security:jdbc-user-service data-source-ref="dataSource"/>
+            <security:jdbc-user-service
+                    data-source-ref="dataSource"
+                    group-authorities-by-username-query="select groups.id, groups.name, roles.role_name from users join group_users using(username) join groups using(id) join group_authorities using(group_id) join roles on group_authorities.authority = roles.role_name where users.username=?"
+                    />
             <!--            <security:user-service>
                 <security:user name="admin" password="test.11" authorities="ROLE_USER,ROLE_ADMIN" />
                 <security:user name="user" password="user" authorities="ROLE_USER" />
