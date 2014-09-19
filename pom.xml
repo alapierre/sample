@@ -13,6 +13,7 @@
         <module>jersey-rest-client</module>
         <module>spring-mvc-jasypt</module>
         <module>spring-jms</module>
+        <module>spring-ws</module>
     </modules>
     <dependencies>
         <dependency>
