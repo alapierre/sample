@@ -4,6 +4,7 @@
 
 package pl.com.softproject.sample.spring.ws;
 
+import javax.jws.WebParam;
 import javax.jws.WebService;
 
 /**
@@ -13,6 +14,6 @@ import javax.jws.WebService;
 @WebService
 public interface HelloService {
 
-    String sayHallo(String name);
+    String sayHallo(@WebParam(name = "name")String name);
     
 }
