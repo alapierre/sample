@@ -14,7 +14,11 @@ create table "SA".AUTHORITIES
 );
 alter table AUTHORITIES add foreign key (username) references users(username);
  
-
+CREATE TABLE roles
+(
+  role_name CHARACTER VARYING(255) NOT NULL,
+  CONSTRAINT roles_pkey PRIMARY KEY (role_name)
+);
 
 CREATE TABLE  acl_sid (
   id bigint NOT NULL GENERATED ALWAYS AS IDENTITY (START WITH 1, INCREMENT BY 1),
@@ -56,4 +60,22 @@ CREATE TABLE acl_object_identity (
   UNIQUE (object_id_class,object_id_identity),
   FOREIGN KEY (parent_object) REFERENCES acl_object_identity (id),
   FOREIGN KEY (owner_sid) REFERENCES acl_sid (id)
+);
+
+CREATE TABLE groups (
+  id  integer  GENERATED ALWAYS AS IDENTITY (START WITH 1, INCREMENT BY 1) PRIMARY KEY,
+  name VARCHAR(100) NOT NULL UNIQUE
+);
+
+CREATE TABLE group_authorities (
+  group_id  integer       NOT NULL,
+  authority VARCHAR(100) NOT NULL,
+  CONSTRAINT foreign_fk_6 FOREIGN KEY (group_id) REFERENCES groups (id),
+  PRIMARY KEY (group_id, authority);
+
+CREATE TABLE group_users (
+  id       integer NOT NULL GENERATED ALWAYS AS IDENTITY (START WITH 1, INCREMENT BY 1) PRIMARY KEY,
+  group_id integer       NOT NULL,
+  username VARCHAR(100) NOT NULL,
+  CONSTRAINT foreign_fk_7 FOREIGN KEY (group_id) REFERENCES groups (id)
 );
