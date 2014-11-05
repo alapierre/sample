@@ -22,8 +22,6 @@
         <security:remember-me />
     </security:http>
 
-    <security:ldap-server id="ldapServer" url="ldap://ad.softproject.local:389/dc=softproject,dc=local" />
-
     <security:authentication-manager alias="myAuthManager">
         <security:authentication-provider ref="adAuthenticationProvider" />
         <security:authentication-provider>
