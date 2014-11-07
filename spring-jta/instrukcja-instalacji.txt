@@ -1,0 +1,19 @@
+Aby projekt zadziałał należy:
+
+1. Otworzyć plik serwera postgresql o nazwie "postgresql.conf" i wpisać przykładowo: max_prepared_transactions = 10
+
+2. Następnie trzeba zrestartować serwer postgresql.
+
+3. Należy założyć dwie bazy danych, przykładowo: jta_first i jta_second.
+
+4. Do glassfish/lib wgrywamy plik jar znajdujący się w katalogu: src/main/lib (przy założeniu, że zainstalowany jest postgres 9.1, jeżeli inny to należy ściągnąć odpowiedni sterownik)
+
+5. Po stronie serwera tworzymy dwa datasource-y, zgodnie ze screenami w katalogu src/main/screens
+
+6. Aby sprawdzić czy działa rollback jta należy w przeglądarce wpisać: {context_aplikacji}/save
+
+7. To czy encje mają się zapisać czy ma nastapić rollback definiujemy w metodzie PersonServiceImpl.savePersons():
+
+a) personSecondDao.createPerson(person2, true);  - wywołujemy rollback
+
+b) personSecondDao.createPerson(person2, false); - wywołujemy poprawny zapis

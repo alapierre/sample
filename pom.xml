@@ -15,6 +15,7 @@
         <module>spring-jms</module>
         <module>spring-ws</module>
         <module>spring-ws-client</module>
+        <module>spring-jta</module>
     </modules>
     <dependencies>
         <dependency>
