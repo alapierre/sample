@@ -6,3 +6,6 @@
 /spring-jms/target/
 /spring-ws/target/
 /spring-ws-client/target/
+/.idea/
+/**/*.iml
+/**/target/

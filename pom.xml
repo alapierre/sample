@@ -16,6 +16,7 @@
         <module>spring-ws</module>
         <module>spring-ws-client</module>
         <module>spring-jta</module>
+        <module>jpa-spring-data</module>
     </modules>
     <dependencies>
         <dependency>
