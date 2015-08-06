@@ -21,9 +21,14 @@
           http://www.springframework.org/schema/jdbc http://www.springframework.org/schema/jdbc/spring-jdbc.xsd
 ">
 
+    <context:annotation-config/>
+    <context:component-scan base-package="pl.com.softproject.sample.oauth.service"/>
+    
     <jdbc:embedded-database id="dataSource" type="H2">
         <jdbc:script location="classpath:sql/create-db.sql" />
         <jdbc:script location="classpath:sql/insert-data.sql" />
     </jdbc:embedded-database>
+    
+    
     
 </beans>

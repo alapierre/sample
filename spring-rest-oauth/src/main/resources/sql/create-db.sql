@@ -7,6 +7,7 @@ CREATE TABLE oauth_access_token
     refresh_token character varying(256), 
     token bytea, 
     ser_name character varying(256), 
+    USER_NAME character varying(256),
     CONSTRAINT oauth_access_token_pkey PRIMARY KEY (token_id)
 );
 
