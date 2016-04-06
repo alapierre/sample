@@ -1,0 +1,1 @@
+insert into velocity_template (id, template_definition, last_modified_date) values ('sample', 'Hello ${name} from JPA!', now());
